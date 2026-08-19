@@ -1,0 +1,26 @@
+const patterns = [
+  /api[_-]?key\s*[:=]\s*['"][^'"]+['"]/gi,
+  /secret\s*[:=]\s*['"][^'"]+['"]/gi,
+  /password\s*[:=]\s*['"][^'"]+['"]/gi,
+  /token\s*[:=]\s*['"][^'"]+['"]/gi,
+  /bearer\s+[a-zA-Z0-9\-._~+/]+=*/gi,
+  /AKIA[0-9A-Z]{16}/g,
+  /sk_live_[0-9a-zA-Z]{24,}/g,
+  /ghp_[0-9a-zA-Z]{36}/g,
+  /xox[baprs]-[0-9a-zA-Z-]{10,}/g,
+  /eyJ[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+/g
+];
+
+patterns.forEach((p) => {
+  const matches = code.match(p);
+  if (matches) console.warn(p, matches);
+});
+
+
+
+
+// Any long strings
+code.match(/['"`][^'"`]{25,}['"`]/g)
+
+// Words containing key/secret/token/pass
+code.match(/\b\w*(key|secret|token|pass|auth|credential)\w*\b/gi)
